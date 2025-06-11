@@ -1,88 +1,106 @@
-import matplotlib.pyplot as plt  # Mengimpor library matplotlib untuk membuat plot
-import numpy as np  # Mengimpor library numpy untuk operasi numerik
+import numpy as np  # Library untuk operasi numerik, terutama array
+import matplotlib.pyplot as plt  # Library untuk membuat visualisasi data (plot, grafik)
+from sklearn.linear_model import LinearRegression  # Model regresi linier dari scikit-learn
 
-# Soal No.1: Linear Regression
-x1 = np.array([10, 20, 30, 40, 50])  # Data variabel independen (misal: jumlah pelanggan)
-y1 = np.array([200, 400, 600, 800, 1000])  # Data variabel dependen (misal: pendapatan)
-m1, b1 = 20, 0  # Slope (m) dan intercept (b) untuk persamaan garis y = 20x
+# =============================================================================
+# Soal 1: Regresi Linier Sederhana
+# =============================================================================
+X1 = np.array([10, 20, 30, 40, 50]).reshape(-1, 1)  # Data fitur (variabel independen), diubah menjadi matriks kolom
+y1 = np.array([200, 400, 600, 800, 1000])  # Data target (variabel dependen)
 
-# Soal No.2: Linear Regression
-x2 = np.array([1, 2, 3, 4])  # Data variabel independen (misal: jam belajar)
-y2 = np.array([60, 65, 70, 74])  # Data variabel dependen (misal: nilai)
-m2, b2 = 5, 55  # Slope (m) dan intercept (b) untuk persamaan garis y = 5x + 55
+model1 = LinearRegression().fit(X1, y1)  # Membuat dan melatih model regresi linier
+y1_pred = model1.predict(X1)  # Memprediksi nilai target menggunakan model yang telah dilatih
 
-# Soal No.3: Linear Regression
-x3 = np.array([1, 3, 5, 7, 9])  # Data variabel independen (misal: umur kendaraan)
-y3 = np.array([150, 120, 90, 60, 30])  # Data variabel dependen (misal: nilai kendaraan)
-m3, b3 = -15, 165  # Slope (m) dan intercept (b) untuk persamaan garis y = -15x + 165
+# =============================================================================
+# Soal 2: Regresi Linier Sederhana
+# =============================================================================
+X2 = np.array([1, 2, 3, 4]).reshape(-1, 1)  # Data fitur
+y2 = np.array([60, 65, 70, 74])  # Data target
 
-# Soal No.4: Linear Regression
-x4 = np.array([5, 10, 15, 20])  # Data variabel independen (misal: jam kerja)
-y4 = np.array([25000, 50000, 75000, 100000])  # Data variabel dependen (misal: pendapatan)
-m4, b4 = 5000, 0  # Slope (m) dan intercept (b) untuk persamaan garis y = 5000x
+model2 = LinearRegression().fit(X2, y2)  # Membuat dan melatih model
+y2_pred = model2.predict(X2)  # Memprediksi nilai target
 
-# Soal No.5: Multiple Linear Regression Visualization (Basic 2D)
-x5_1 = np.array([50, 60, 70, 80, 90])   # Feature 1: Waktu Layanan
-x5_2 = np.array([2, 3, 4, 5, 6])        # Feature 2: Jumlah Komplain
-y5 = np.array([400, 480, 560, 640, 720])# Target: Tingkat Kepuasan
-a5, b5_1, b5_2 = -320, 8, 80  # Regression equation: Y = -320 + 8X1 + 80X2
+# =============================================================================
+# Soal 3: Regresi Linier Sederhana
+# =============================================================================
+X3 = np.array([1, 3, 5, 7, 9]).reshape(-1, 1)  # Data fitur
+y3 = np.array([150, 120, 90, 60, 30])  # Data target
 
-# Membuat subplot 2x2 untuk empat soal pertama
-fig, axs = plt.subplots(2, 2, figsize=(14, 10))
+model3 = LinearRegression().fit(X3, y3)  # Membuat dan melatih model
+y3_pred = model3.predict(X3)  # Memprediksi nilai target
 
-# Plot Soal 1: Regresi linier sederhana
-axs[0, 0].scatter(x1, y1, color='blue')  # Membuat scatter plot dari data
-axs[0, 0].plot(x1, m1 * x1 + b1, color='red')  # Membuat garis regresi
-axs[0, 0].set_title("No.1 : Y = 20X")  # Menetapkan judul plot
-axs[0, 0].set_xlabel("Pelanggan")  # Menetapkan label sumbu x
-axs[0, 0].set_ylabel("Pendapatan (ribu)")  # Menetapkan label sumbu y
+# =============================================================================
+# Soal 4: Regresi Linier Sederhana
+# =============================================================================
+X4 = np.array([5, 10, 15, 20]).reshape(-1, 1)  # Data fitur
+y4 = np.array([25000, 50000, 75000, 100000])  # Data target
 
-# Plot Soal 2: Regresi linier sederhana dengan intercept
-axs[0, 1].scatter(x2, y2, color='green')  # Membuat scatter plot dari data
-axs[0, 1].plot(x2, m2 * x2 + b2, color='red')  # Membuat garis regresi
-axs[0, 1].set_title("No.2 : Y = 5X + 55")  # Menetapkan judul plot
-axs[0, 1].set_xlabel("Jam Belajar")  # Menetapkan label sumbu x
-axs[0, 1].set_ylabel("Nilai")  # Menetapkan label sumbu y
+model4 = LinearRegression().fit(X4, y4)  # Membuat dan melatih model
+y4_pred = model4.predict(X4)  # Memprediksi nilai target
 
-# Plot Soal 3: Regresi linier dengan slope negatif
-axs[1, 0].scatter(x3, y3, color='purple')  # Membuat scatter plot dari data
-axs[1, 0].plot(x3, m3 * x3 + b3, color='red')  # Membuat garis regresi
-axs[1, 0].set_title("No.3 : Y = -15X + 165")  # Menetapkan judul plot
-axs[1, 0].set_xlabel("Umur Kendaraan (tahun)")  # Menetapkan label sumbu x
-axs[1, 0].set_ylabel("Nilai Kendaraan (juta)")  # Menetapkan label sumbu y
+# =============================================================================
+# Soal 5: Regresi Linier Berganda
+# =============================================================================
+X5 = np.array([[50, 2], [60, 3], [70, 4], [80, 5], [90, 6]])  # Data fitur (dua variabel independen)
+y5 = np.array([400, 480, 560, 640, 720])  # Data target
 
-# Plot Soal 4: Regresi linier dengan skala besar
-axs[1, 1].scatter(x4, y4, color='orange')  # Membuat scatter plot dari data
-axs[1, 1].plot(x4, m4 * x4 + b4, color='red')  # Membuat garis regresi
-axs[1, 1].set_title("No.4 : Y = 5000X")  # Menetapkan judul plot
-axs[1, 1].set_xlabel("Jam Kerja")  # Menetapkan label sumbu x
-axs[1, 1].set_ylabel("Pendapatan (rupiah)")  # Menetapkan label sumbu y
+model5 = LinearRegression().fit(X5, y5)  # Membuat dan melatih model regresi linier berganda
+prediksi5 = model5.predict([[75, 4]])  # Memprediksi nilai target untuk data baru [[75, 4]]
 
-# Menampilkan semua subplot dengan tata letak yang rapi
-plt.tight_layout()
+# =============================================================================
+# Visualisasi Soal 1 - 4: Regresi Linier Sederhana
+# =============================================================================
+fig, axs = plt.subplots(2, 2, figsize=(14, 10))  # Membuat figure dan axes untuk subplot (2x2)
+axs = axs.flatten()  # Mengubah array 2D axes menjadi array 1D untuk iterasi yang lebih mudah
 
-# Visualisasi 2D dasar untuk Soal 5:
-# Plot x5_1 (Waktu Layanan) vs y5 (Tingkat Kepuasan)
-# Gunakan warna untuk merepresentasikan x5_2 (Jumlah Komplain) - fitur kedua
-plt.figure(figsize=(8, 6))  # Membuat figure baru
-scatter = plt.scatter(x5_1, y5, c=x5_2, cmap='winter', s=100, edgecolor='black')  # Membuat scatter plot dengan warna berdasarkan x5_2
+# Daftar dataset untuk iterasi dan visualisasi
+datasets = [
+    (X1, y1, y1_pred, "No.1: Y = {:.2f}X + {:.2f}".format(model1.coef_[0], model1.intercept_), "Jumlah Pelanggan", "Pendapatan"),
+    (X2, y2, y2_pred, "No.2: Y = {:.2f}X + {:.2f}".format(model2.coef_[0], model2.intercept_), "Jam Belajar", "Nilai"),
+    (X3, y3, y3_pred, "No.3: Y = {:.2f}X + {:.2f}".format(model3.coef_[0], model3.intercept_), "Umur Kendaraan", "Harga Jual"),
+    (X4, y4, y4_pred, "No.4: Y = {:.2f}X + {:.2f}".format(model4.coef_[0], model4.intercept_), "Jam Internet", "Pulsa")
+]
+
+# Iterasi melalui dataset dan membuat plot untuk setiap soal
+for i, (X, y, y_pred, title, xlabel, ylabel) in enumerate(datasets):
+    axs[i].scatter(X, y, color='blue', label='Data')  # Scatter plot data aktual
+    axs[i].plot(X, y_pred, color='red', linewidth=2, label='Regresi Linier')  # Garis regresi
+    axs[i].set_title(title, fontsize=14)  # Judul plot
+    axs[i].set_xlabel(xlabel, fontsize=12)  # Label sumbu x
+    axs[i].set_ylabel(ylabel, fontsize=12)  # Label sumbu y
+    axs[i].grid(True)  # Menambahkan grid untuk kemudahan pembacaan
+    axs[i].legend()  # Menampilkan legenda
+
+plt.tight_layout()  # Menyesuaikan tata letak subplot agar tidak tumpang tindih
+
+# =============================================================================
+# Visualisasi Soal 5: Regresi Linier Berganda (2D)
+# =============================================================================
+fig2, ax5 = plt.subplots(figsize=(10, 8))  # Membuat figure dan axes untuk plot
+x5_1 = X5[:, 0]  # Fitur 1 (Waktu Layanan)
+x5_2 = X5[:, 1]  # Fitur 2 (Jumlah Komplain)
+
+# Scatter plot dengan warna berdasarkan Jumlah Komplain
+scatter = ax5.scatter(x5_1, y5, c=x5_2, cmap='cool', s=100, edgecolor='black', label='Data')
 plt.colorbar(scatter, label='X2: Jumlah Komplain')  # Menambahkan colorbar untuk interpretasi warna
-plt.title("No.5 : Visualisasi Regresi Linier Berganda (2D Basic)")  # Menetapkan judul plot
-plt.xlabel("X1: Waktu Layanan")  # Menetapkan label sumbu x
-plt.ylabel("Tingkat Kepuasan")  # Menetapkan label sumbu y
-plt.grid(True)  # Menambahkan grid ke plot
 
-# Teks penjelasan yang dicetak ke konsol untuk pemahaman pengguna
-explanation = """
-Penjelasan Visualisasi No.5:
-- Ini adalah visualisasi regresi linier berganda dengan dua variabel bebas (X1 dan X2).
-- Sumbu X1 (Waktu Layanan) diplot pada sumbu horizontal.
-- Sumbu Y (Tingkat Kepuasan) diplot pada sumbu vertikal.
-- Warna titik mewakili nilai X2 (Jumlah Komplain) menggunakan skala warna.
-- Dengan cara ini, kita dapat melihat bagaimana Tingkat Kepuasan dipengaruhi oleh kombinasi Waktu Layanan dan Jumlah Komplain.
-- Titik dengan warna berbeda menunjukkan variasi variabel kedua (X2).
-"""
+ax5.set_title("No.5: Visualisasi Regresi Linier Berganda (2D)", fontsize=14)  # Judul plot
+ax5.set_xlabel("X1: Waktu Layanan", fontsize=12)  # Label sumbu x
+ax5.set_ylabel("Y: Tingkat Kepuasan", fontsize=12)  # Label sumbu y
+ax5.grid(True)  # Menambahkan grid
+ax5.legend()  # Menampilkan legenda
 
-print(explanation)  # Mencetak penjelasan
+# Menambahkan persamaan regresi pada plot
+equation = "Y = {:.2f} + {:.2f}*X1 + {:.2f}*X2".format(model5.intercept_, model5.coef_[0], model5.coef_[1])
+ax5.text(0.05, 0.95, equation, transform=ax5.transAxes, fontsize=12, verticalalignment='top', bbox=dict(facecolor='white', alpha=0.8))
+
+plt.tight_layout()  # Menyesuaikan tata letak
+
+# Menyimpan plot ke file gambar (opsional)
+image_path = "/mnt/data/regresi_linier_ppt_style.png"
+plt.savefig(image_path)
+
+print("Plot disimpan di:", image_path)
+print("Prediksi untuk [75, 4]:", prediksi5[0])
 
 plt.show()  # Menampilkan semua plot
